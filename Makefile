@@ -3,15 +3,15 @@
 #	OS: linux
 ##
 CC ?= gcc
-LDFLAGS = 
 CFLAGS = -lsz -lz -ldl -lm 
+LDFLAGS = 
 OUTPUT_FILE = dnn
-OUTPUT_DIR = output
+OUTPUT_DIR = -o output
 SOURCE_DIR = src
 
-INCLUDE_DIR = 
-LIBRARY_DIR = 
-HDF_STATIC_LIB = 
+INCLUDE_DIR = -Isrc -Ibuild/hdf/output/include
+LIBRARY_DIR =  -Lbuild/hdf/output/lib
+HDF_STATIC_LIB = build/hdf/output/lib/libhdf5.a build/hdf/output/lib/libhdf5_hl.a
 
 CURRENT_DIR:=$(shell pwd)
 
@@ -27,7 +27,7 @@ $(info HDF module exist!)
 endif
 
 default: 
-	echo hi
+	$(CC) $(SOURCE_DIR)/main.c $(OUTPUT_DIR)/$(OUTPUT_FILE) $(INCLUDE_DIR) $(LIBRARY_DIR) $(HDF_STATIC_LIB) $(CFLAGS) $(LDFLAGS)
 
 build-hdf:
 	cd $(CURRENT_DIR)/build/hdf && ./configure --prefix=$(CURRENT_DIR)/build/hdf/output
