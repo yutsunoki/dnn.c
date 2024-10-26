@@ -1,0 +1,4 @@
+[submodule "build/hdf"]
+	path = build/hdf
+	url = https://github.com/HDFGroup/hdf5.git
+	branch = hdf5_1_14_5
