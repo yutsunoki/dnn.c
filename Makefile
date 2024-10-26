@@ -16,9 +16,9 @@ default:
 
 SHELL:=/usr/bin/bash
 build-hdf:
-	$(shell cd $(CURRENT_DIR)/build/hdf && ./configure --prefix=$(CURRENT_DIR)/build/hdf/output)
-	$(shell make -C $(CURRENT_DIR)/build/hdf)
-	$(shell make check -C $(CURRENT_DIR)/build/hdf)
-	$(shell make install -C $(CURRENT_DIR)/build/hdf)
-	$(shell make check-install -C $(CURRENT_DIR)/build/hdf)
+	cd $(CURRENT_DIR)/build/hdf && ./configure --prefix=$(CURRENT_DIR)/build/hdf/output
+	make -C $(CURRENT_DIR)/build/hdf
+	make check -C $(CURRENT_DIR)/build/hdf
+	make install -C $(CURRENT_DIR)/build/hdf
+	make check-install -C $(CURRENT_DIR)/build/hdf
 
