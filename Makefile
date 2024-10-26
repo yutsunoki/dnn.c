@@ -1,3 +1,7 @@
+##
+#	This is for my DNN practice
+#	OS: linux
+##
 CC ?= gcc
 LDFLAGS = 
 CFLAGS = -lsz -lz -ldl -lm 
@@ -11,14 +15,20 @@ HDF_STATIC_LIB =
 
 CURRENT_DIR:=$(shell pwd)
 
-default:
-	#$(CC) 
+ifeq ($(wildcard build/hdf/output/include/hdf5.h),)
+$(error hdf module not found!)
+$(error Please use `git pull --recurse-submodules` to pull the hdf module.)
+$(error And use `make build-hdf` to build hdf module in here.)
+else
+$(info hdf module exist!)
+endif
 
-SHELL:=/usr/bin/bash
+default: 
+	echo hi
+
 build-hdf:
 	cd $(CURRENT_DIR)/build/hdf && ./configure --prefix=$(CURRENT_DIR)/build/hdf/output
 	make -C $(CURRENT_DIR)/build/hdf
 	make check -C $(CURRENT_DIR)/build/hdf
 	make install -C $(CURRENT_DIR)/build/hdf
 	make check-install -C $(CURRENT_DIR)/build/hdf
-
