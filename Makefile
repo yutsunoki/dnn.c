@@ -26,6 +26,10 @@ else
 $(info HDF module exist!)
 endif
 
+ifeq ($(wildcard output),)
+$(shell mkdir output)
+endif
+
 default: 
 	$(CC) $(SOURCE_DIR)/main.c $(OUTPUT_DIR)/$(OUTPUT_FILE) $(INCLUDE_DIR) $(LIBRARY_DIR) $(HDF_STATIC_LIB) $(CFLAGS) $(LDFLAGS)
 
